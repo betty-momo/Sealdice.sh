@@ -304,7 +304,7 @@ if [[ ! -f "$download_dir/sealdice/146/146.tar.gz" || ! -f "$download_dir/sealdi
             echo -e "${YELLOW}正在下载 1.4.6 版本...${NC}"
             curl -o "$download_dir/sealdice/146/146.tar.gz" https://d1.sealdice.com/sealdice-core_1.4.6_linux_amd64.tar.gz --progress-bar
             
-            # 下载 1.5.1
+            # 下载 1.5.0
             mkdir -p "$download_dir/sealdice/150"
             echo -e "${YELLOW}正在下载 1.5.0 版本...${NC}"
             curl -o "$download_dir/sealdice/150/150.tar.gz" https://d1.sealdice.com/sealdice-core_1.5.0_linux_amd64.tar.gz --progress-bar
@@ -330,7 +330,7 @@ fi
 while true; do
     echo -e "\n${CYAN}请选择你想部署的版本：${NC}"
     echo -e "${GREEN}1${NC} 1.4.6 (旧版本)"
-    echo -e "${GREEN}2${NC} 1.5.1（预发布版，全新部署建议）"
+    echo -e "${GREEN}2${NC} 1.5.0（稳定版）"
     echo -e "${GREEN}3${NC} 我不知道它们的区别？"
     read -p "请输入选择 (1/2/3): " version_choice
 
@@ -340,11 +340,11 @@ while true; do
                 echo -e "\n${YELLOW}你是否为全新部署？（y/n）${NC}"
                 read -r is_fresh_146
                 if [[ "$is_fresh_146" == "y" || "$is_fresh_146" == "Y" ]]; then
-                    echo -e "\n${YELLOW}如果你是全新部署，建议使用${NC} ${WHITE_ON_RED}1.5.1版本${NC}${YELLOW}，以避免${WHITE_ON_RED}数据丢失风险${NC}${YELLOW}。\n你是否要切换去部署1.5.1？（y/n）${NC}"
+                    echo -e "\n${YELLOW}如果你是全新部署，建议使用${NC} ${WHITE_ON_RED}1.5.0版本${NC}${YELLOW}，以避免${WHITE_ON_RED}数据丢失风险${NC}${YELLOW}。\n你是否要切换去部署1.5.0？（y/n）${NC}"
                     read -r switch_to_150
                     if [[ "$switch_to_150" == "y" || "$switch_to_150" == "Y" ]]; then
-                        echo -e "${GREEN}切换到部署 1.5.1 版本。${NC}"
-                        deploy_dice "150"  # 直接调用 1.5.1 的部署逻辑
+                        echo -e "${GREEN}切换到部署 1.5.0 版本。${NC}"
+                        deploy_dice "150"  # 直接调用 1.5.0 的部署逻辑
                         exit 0
                     elif [[ "$switch_to_150" == "n" || "$switch_to_150" == "N" ]]; then
                         echo -e "${GREEN}继续部署 1.4.6 版本。${NC}"
@@ -354,7 +354,7 @@ while true; do
                         echo -e "${RED}无效输入，请输入 y 或 n。${NC}"
                     fi
                 elif [[ "$is_fresh_146" == "n" || "$is_fresh_146" == "N" ]]; then
-                    echo -e "\n${YELLOW}1.4.6 版本为老数据库的版本。如果你需要迁移，并且之前的数据是来自 1.5.1 版本以上的话，请不要继续，建议选择 1.5.1 版本。\n是否继续？（y/n）${NC}"
+                    echo -e "\n${YELLOW}1.4.6 版本为老数据库的版本。如果你需要迁移，并且之前的数据是来自 1.5.0 版本以上的话，请不要继续，建议选择 1.5.0 版本。\n是否继续？（y/n）${NC}"
                     read -r proceed_146
                     if [[ "$proceed_146" == "y" || "$proceed_146" == "Y" ]]; then
                         echo -e "\n${RED}我已仔细阅读，并确认我要部署 1.4.6 版本的 Sealdice。（y/n）${NC}"
